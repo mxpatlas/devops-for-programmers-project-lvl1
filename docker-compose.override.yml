@@ -1,0 +1,9 @@
+version: '3'
+
+services:
+  app:
+    environment: {}
+    ports:
+      - "8080:8080"
+    network_mode: host
+    command: npm start

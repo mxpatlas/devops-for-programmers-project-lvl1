@@ -1,0 +1,20 @@
+version: '3'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: nodeos
+    container_name: nodeosapp
+    #restart: unless-stopped
+    #env_file: .env
+    environment: {}
+    #ports:
+    #  - "8080:8080"
+    volumes:
+      - .:/app
+    #networks:
+    #  - app-network
+    command: npm test
+
