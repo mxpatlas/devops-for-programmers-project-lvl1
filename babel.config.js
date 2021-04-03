@@ -3,12 +3,12 @@ module.exports = {
     ['@babel/preset-env',
       {
         targets: {
-          node: 'current',
-        },
-      },
-    ],
+          node: 'current'
+        }
+      }
+    ]
   ],
   plugins: [
-    'dynamic-import-node',
-  ],
-};
+    'dynamic-import-node'
+  ]
+}

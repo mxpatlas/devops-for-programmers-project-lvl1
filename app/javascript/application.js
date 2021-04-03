@@ -1,3 +1,3 @@
 /* @ts-check */
 
-console.log('Welcome to Nodos!');
+console.log('Welcome to Nodos!')
