@@ -15,6 +15,7 @@ jobs:
       - name: Run tests
         run: npm test
   docker:
+    needs: run_tests
     runs-on: ubuntu-latest
     steps:
       #- name: Set up QEMU
