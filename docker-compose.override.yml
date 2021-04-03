@@ -2,8 +2,15 @@ version: '3'
 
 services:
   app:
-    environment: {}
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: mxpatlas/devops-for-programmers-project-lvl1:dev
+    container_name: nodeos_dev
+    environment:
+      - "NODOS_HOST=0.0.0.0"
     ports:
       - "0.0.0.0:8080:8080"
-    #network_mode: host
+    volumes:
+      - .:/app
     command: npm start

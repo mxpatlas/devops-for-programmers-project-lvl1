@@ -4,18 +4,11 @@ services:
   app:
     build:
       context: .
-      dockerfile: Dockerfile
-    image: nodeos
-    container_name: nodeosapp
+      dockerfile: Dockerfile.production
+    image: mxpatlas/devops-for-programmers-project-lvl1:prod
+    container_name: nodeos_prod
     #restart: unless-stopped
     #env_file: .env
-    environment:
-      - "NODOS_HOST=0.0.0.0"
-    #ports:
-    #  - "8080:8080"
-    volumes:
-      - .:/app
-    #networks:
-    #  - app-network
+    environment: {}
     command: npm test
 
