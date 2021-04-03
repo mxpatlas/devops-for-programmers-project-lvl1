@@ -1,0 +1,13 @@
+name: tests and docker
+on: [push]
+jobs:
+  run_tests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Add node.js
+        uses: actions/setup-node@v1
+      - name: Run tests
+        run: npm test
+
