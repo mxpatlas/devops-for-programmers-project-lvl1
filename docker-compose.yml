@@ -11,7 +11,7 @@ services:
       - "0.0.0.0:443:443"
     depends_on:
       - app
-    env_file: .env
+    env_file: .env_test
   app:
     build:
       context: .
@@ -23,11 +23,11 @@ services:
     command: npm test
     depends_on:
       - db
-    env_file: .env
+    env_file: .env_test
   db:
     image: postgres:13.2
     container_name: pg_db_nodeos
     restart: always
-    env_file: .env
+    env_file: .env_test
 
 
