@@ -12,3 +12,6 @@ server:
 
 test:
 	npm -s test
+
+curl:
+	curl -k -v --ciphers ALL --tls-max 1.2  https://localhost:443

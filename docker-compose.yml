@@ -1,6 +1,16 @@
 version: '3'
 
 services:
+  caddy:
+    image: caddy:2.3.0
+    container_name: caddy_proxy
+    volumes:
+      - ./services/caddy/Caddyfile:/etc/caddy/Caddyfile
+    ports:
+      - "0.0.0.0:80:80"
+      - "0.0.0.0:443:443"
+    depends_on:
+      - app
   app:
     build:
       context: .
