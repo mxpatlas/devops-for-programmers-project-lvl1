@@ -4,7 +4,7 @@ run:
 	docker-compose up
 
 image:
-	docker build -t nodeos .
+	DOCKER_BUILDKIT=1 docker build -t nodeos .
 
 
 server:
