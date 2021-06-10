@@ -14,8 +14,37 @@ jobs:
         run: npm install
       - name: Run tests
         run: npm test
-  docker:
+  run_compose_tests:
     needs: run_tests
+    runs-on: ubuntu-latest
+    steps:
+      -
+        name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+      -
+        name: Cache Docker layers
+        uses: actions/cache@v2
+        with:
+          path: /tmp/.buildx-cache
+          key: ${{ runner.os }}-buildx-${{ github.sha }}
+          restore-keys: |
+            ${{ runner.os }}-buildx-
+      -
+        name: Build production image to run tests
+        id: docker_build
+        uses: docker/build-push-action@v2
+        with:
+          file: Dockerfile.production
+          tags: mxpatlas/devops-for-programmers-project-lvl1:prod
+          push: false
+          cache-from: type=local,src=/tmp/.buildx-cache
+          cache-to: type=local,dest=/tmp/.buildx-cache
+      -
+        run: docker-compose -f docker-compose.yml up
+  docker_push:
+    needs:
+     - run_tests
+     - run_compose_tests
     runs-on: ubuntu-latest
     steps:
       -
@@ -41,7 +70,7 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           file: Dockerfile.production
-          tags: mxpatlas/devops-for-programmers-project-lvl1:prod
+          tags: mxpatlas/devops-for-programmers-project-lvl1:latest
           push: true
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache-new
