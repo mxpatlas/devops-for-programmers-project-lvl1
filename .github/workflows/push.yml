@@ -43,7 +43,9 @@ jobs:
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache
       -
-        run: docker-compose -f docker-compose.yml up
+        run: docker-compose -f docker-compose.yml pull --ignore-pull-failures
+      -
+        run: docker-compose -f docker-compose.yml --abort-on-container-exit up
   docker_push:
     needs:
      - run_tests
