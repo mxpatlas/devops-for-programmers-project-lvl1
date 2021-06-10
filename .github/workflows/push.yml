@@ -45,7 +45,7 @@ jobs:
       -
         run: docker-compose -f docker-compose.yml pull --ignore-pull-failures
       -
-        run: docker-compose -f docker-compose.yml --abort-on-container-exit up
+        run: docker-compose -f docker-compose.yml up --abort-on-container-exit
   docker_push:
     needs:
      - run_tests
