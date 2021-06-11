@@ -40,6 +40,7 @@ jobs:
           file: Dockerfile.production
           tags: mxpatlas/devops-for-programmers-project-lvl1:prod
           push: false
+          load: true
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache
       -
